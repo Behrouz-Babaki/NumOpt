@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-
 #include "opt.hpp"
 
 using std::cout;
@@ -21,6 +20,7 @@ vector<double> toy_grad(vector<double> arg) {
 }
 
 int main(void) {
+  
   vector<double> x {14.5, 15.5};
   cout << "initial value of x: " << endl;
   for (auto i: x)
