@@ -27,7 +27,8 @@ int main(void) {
   for (int i=0; i<2; i++)
     p[i] = -g[i];
   vector<double> x2 = line_search(x, p, toy_func, g);
-  for (auto i: x2)
+  vector<double> x_min = gd_ls(x, toy_func, toy_grad);
+  for (auto i: x_min)
     cout << i << "\t";
   cout << endl;
   return 0;

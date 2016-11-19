@@ -3,14 +3,15 @@
 CFLAGS = -g -Wall -std=c++0x
 
 all: main
+src/opt.cpp: src/opt.hpp
 
 obj/%.o: src/%.cpp
 	$(CXX) -c $< -o $@ $(CFLAGS)
 
-main: obj/main.o obj/opt.o
+bin/main: obj/main.o obj/opt.o
 	$(CXX) $^ -o bin/main $(LFLAGS)
 
-test: main
+test: bin/main
 	@./bin/main
 
 clean:
