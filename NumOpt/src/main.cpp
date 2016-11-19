@@ -22,14 +22,29 @@ vector<double> toy_grad(vector<double> arg) {
 
 int main(void) {
   vector<double> x {14.5, 15.5};
-  vector<double> g = toy_grad(x);
+  cout << "initial value of x: " << endl;
+  for (auto i: x)
+    cout << i << "\t";
+  cout << endl;
+  
+  vector<double> g_value = toy_grad(x);
+  
+  // test line search
   vector<double> p(2);
   for (int i=0; i<2; i++)
-    p[i] = -g[i];
-  vector<double> x2 = line_search(x, p, toy_func, g);
+    p[i] = -g_value[i];
+  vector<double> x2 = line_search(x, p, toy_func, g_value);
+  cout << "\nvalue of x in the second iteration:" << endl;
+  for (auto i: x2)
+    cout << i << "\t";
+  cout << endl;
+  
+  // test gradient descent with line search
   vector<double> x_min = gd_ls(x, toy_func, toy_grad);
+  cout  << "\noptimal value of x: " << endl;
   for (auto i: x_min)
     cout << i << "\t";
   cout << endl;
+  
   return 0;
 }
