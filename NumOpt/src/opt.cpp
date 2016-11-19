@@ -1,9 +1,6 @@
-#include <iostream>
+#include <cmath>
 
 #include "opt.hpp"
-
-using std::cout;
-using std::endl;
 
 vector<double> line_search(vector<double> x,
 		   vector<double> p,
@@ -37,15 +34,16 @@ vector<double> gd_ls(vector<double> x,
 		     double tolerance) {
   int dim = x.size();
   vector<double> g_value = g(x);
+
   vector<double> p(dim);
   for (int i=0; i<dim; i++)
     p[i] = -g_value[i];
   
-  double max_dim = 0;
+  int max_dim = 0;
   for (int i=1; i<dim; i++)
-    if (abs(p[i]) > abs(p[max_dim]))
+    if (fabs(p[i]) > fabs(p[max_dim]))
       max_dim = i;
-  double m = abs(p[max_dim]);
+  double m = fabs(p[max_dim]);
 
   while(m > tolerance) {
     x = line_search(x, p, f, g_value);
@@ -56,9 +54,9 @@ vector<double> gd_ls(vector<double> x,
     
     max_dim = 0;
     for (int i=1; i<dim; i++)
-      if (abs(p[i]) > abs(p[max_dim]))
+      if (fabs(p[i]) > fabs(p[max_dim]))
 	max_dim = i;
-    m = abs(p[max_dim]);
+    m = fabs(p[max_dim]);
   }
   return x;
 }
