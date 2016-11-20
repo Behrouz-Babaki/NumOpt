@@ -19,6 +19,17 @@ vector<double> toy_grad(vector<double> arg) {
   return g;
 }
 
+// [2, 0|
+// |0, 4]
+vector<vector<double> > toy_hessian(vector<double> arg) {
+  vector<vector<double> > h(2, vector<double>(2));
+  h[0][0] = 2;
+  h[0][1] = 0;
+  h[1][0] = 0;
+  h[1][1] = 4;
+  return h;
+}
+
 int main(void) {
   
   vector<double> x {14.5, 15.5};
@@ -41,7 +52,13 @@ int main(void) {
   
   // test gradient descent with line search
   vector<double> x_min = gd_ls(x, toy_func, toy_grad);
-  cout  << "\noptimal value of x: " << endl;
+  cout  << "\ngd_ls: optimal value of x: " << endl;
+  for (auto i: x_min)
+    cout << i << "\t";
+  cout << endl;
+  
+  x_min = newton(x, toy_grad, toy_hessian);
+  cout << "\nnewton: optimal value of x: " << endl;
   for (auto i: x_min)
     cout << i << "\t";
   cout << endl;

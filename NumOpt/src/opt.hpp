@@ -17,3 +17,8 @@ vector<double> gd_ls(vector<double> x,
 		     function<double(vector<double>)> f,
 		     function<vector<double>(vector<double>)> g,
 		     double tolerance=1e-4);
+
+vector<double> newton(vector<double> x,
+		      function<vector<double>(vector<double>)> g,
+		      function<vector< vector<double> >(vector<double>)> h,
+		      double tolerance=1e-4);
